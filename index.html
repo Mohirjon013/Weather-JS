@@ -21,6 +21,10 @@
             </button>
         </section>
         
+        <section class="loading-section hidden">
+            <img class="mx-auto mt-[70px]" src="./images/loading-gif.gif" alt="loading" width="250" height="250">
+        </section>
+        
         <section class="weather-info flex-col hidden" >
             <div class="flex items-center justify-between mb-3">
                 <div class="flex items-center gap-2">
@@ -47,7 +51,7 @@
                         <h5 class="city-humidity !font-medium">55%</h5>
                     </div>
                 </div>
-
+                
                 <div class="flex items-center gap-1">
                     <img src="./images/wind-icon.svg" alt="wind-icon" width="30" height="30">
                     <div class="">
@@ -56,13 +60,13 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="forecast-wrapper flex gap-3 pb-3 overflow-x-scroll"></div>
         </section>
-
+        
         <section class="search-city flex flex-col items-center text-center gap-4 mt-[20%]" >
             <img  src="./images/message/search-city.png" alt="search-city" width="200" height="180">
-
+            
             <div class="">
                 <p class="text-[22px]">Serach City</p>
                 <p class="!font-normal">Find out the weather conditions of city</p>
@@ -71,12 +75,12 @@
         
         <section class="not-found flex flex-col items-center text-center gap-4 mt-[20%] hidden" >
             <img  src="./images/message/not-found.png" alt="not-city" width="200" height="180">
-
+            
             <div class="mt-5">
                 <p class="text-[22px]">Serach City</p>
                 <p class="!font-normal">Find out the weather conditions of city</p>
             </div>
-        </section>
+        </section> 
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>

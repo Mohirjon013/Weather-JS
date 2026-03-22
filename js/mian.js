@@ -5,6 +5,8 @@ const elSreachBtn = document.querySelector(".search-btn")
 const elNotFound = document.querySelector(".not-found")
 const elSearchCity = document.querySelector(".search-city")
 const elWeatherInfo = document.querySelector(".weather-info")
+const elLoadingSection = document.querySelector(".loading-section")
+
 
 const elCityName = document.querySelector(".city-name")
 const elCityTemp = document.querySelector(".city-temp")
@@ -19,6 +21,7 @@ const elForecastWrapper = document.querySelector(".forecast-wrapper")
 
 const apiKey = '44c8ae6d0a046020cae3cde2159116b8'
 
+// Search part start
 elSreachBtn.addEventListener("click", () => {
     if(elSreachInput.value.trim() !=  ""){
         updateWeatherInfo(elSreachInput.value)
@@ -33,15 +36,23 @@ elSreachInput.addEventListener('keyup', (e) => {
         elSreachInput.blur()
     }  
 })
+// Search part end
 
 
+// get API start
 async function getFetchData(endpPoint, city){
+    showDisplaySection(elLoadingSection)
     const apiURL = `https://api.openweathermap.org/data/2.5/${endpPoint}?q=${city}&appid=${apiKey}&units=metric`
-    
     const response = await fetch(apiURL)
-    return response.json()
+    const data = await response.json()
+    elLoadingSection.classList.add("hidden")
+    
+    return data
 }
+// get API end
 
+
+// today date and weather icon start
 function getTodayDate(){
     const currentDate = new Date()
     const options = {
@@ -60,8 +71,10 @@ function getWeatherIcon(id){
     if( id <= 800) return 'clear.svg'
     else return 'clouds.svg'
 }
+// today date and weather icon end
 
 
+// weather info start
 async function updateWeatherInfo(city){
     const weatherData = await getFetchData('weather', city)
     
@@ -92,9 +105,12 @@ async function updateWeatherInfo(city){
     
     showDisplaySection(elWeatherInfo)
 }
+// forecast info end
 
 
+// forecast info start
 async function updateForecastInfo(city){
+    elForecastWrapper.innerHTML = ''
     const forecastDate = await getFetchData('forecast', city)
     
     const timeTaken = '12:00:00'
@@ -104,12 +120,9 @@ async function updateForecastInfo(city){
         if(item.dt_txt.includes(timeTaken) && !item.dt_txt.includes(todayDate)){
             updateForecastItems(item)
         }
-        
     })
 }
 function updateForecastItems(data){
-    console.log(data);
-    
     const { dt_txt, main: { temp }, weather: [{ id }] } = data
     const date = dt_txt.split(' ')[0]    
     const [, month, day] = date.split('-')
@@ -123,12 +136,15 @@ function updateForecastItems(data){
         <img class="" src="./images/weather/${getWeatherIcon(id)}" alt="thunderstorm" width="35" height="35">
         <h5>${Math.round(temp)} °C</h5>
     `
-
+    
     elForecastWrapper.appendChild(forecastItem)
 }
+// forecast info end
 
 
+// showDisplay Section start 
 function showDisplaySection(section){
     [elWeatherInfo, elSearchCity, elNotFound].forEach(item => item.classList.add("hidden"))
     section.classList.remove("hidden")
 }
+// showDisplay Section end 
