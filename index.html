@@ -3,11 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather</title>
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <style type="text/tailwindcss">
+        @theme {
+            --color-clifford: #da373d;
+        }
+    </style>
 </head>
 <body>
     
+    <main class="site-main max-w-[320px] w-full mx-auto h-[480px] p-5 px-4 rounded-[12px]  z-50 linear-gradient backdrop-blur-[100px]">
+        <section class="input-wrapper relative mb-5">
+            <input class="search-input w-full px-[16px] py-[10px] pr-12 !font-medium rounded-full border-2 border-transparent bg-black/15 outline-none focus:border-black/15  duration-300" type="text" placeholder="Search City">
+            <button class="search-btn absolute right-[14px] top-[10px] cursor-pointer">
+                <img src="./images/search-icon.svg" alt="search-icon" width="23" height="23">
+            </button>
+        </section>
+        
+        <section class="weather-info flex-col hidden" >
+            <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2">
+                    <img src="./images/location-icon.svg" alt="location-icon" width="25" height="25">
+                    
+                    <h4 class="city-name">Jakarta</h4>
+                </div>
+                <p class="today-date !font-normal">Wed, 07 Aug</p>
+            </div>
+            
+            <div class="flex items-center justify-between mb-3">
+                <img class="weather-img" src="./images/weather/clouds.svg" alt="clouds-weather" width="120" height="120">
+                <div class="">
+                    <h1 class="city-temp">29 °C</h1>
+                    <h3 class="city-condition !font-normal">Clouds</h3>
+                </div>
+            </div>
+            
+            <div class="flex  justify-between mb-4">
+                <div class="flex items-center gap-1">
+                    <img src="./images/water-drop-icon.svg" alt="water-drop-icon" width="25" height="25">
+                    <div class="">
+                        <h5 class=" !font-normal">Humidity</h5>
+                        <h5 class="city-humidity !font-medium">55%</h5>
+                    </div>
+                </div>
 
+                <div class="flex items-center gap-1">
+                    <img src="./images/wind-icon.svg" alt="wind-icon" width="30" height="30">
+                    <div class="">
+                        <h5 class="!font-normal">Wind Spead</h5>
+                        <h5 class="city-wind !font-medium">1.54 M/s</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="forecast-wrapper flex gap-3 pb-3 overflow-x-scroll"></div>
+        </section>
+
+        <section class="search-city flex flex-col items-center text-center gap-4 mt-[20%]" >
+            <img  src="./images/message/search-city.png" alt="search-city" width="200" height="180">
+
+            <div class="">
+                <p class="text-[22px]">Serach City</p>
+                <p class="!font-normal">Find out the weather conditions of city</p>
+            </div>
+        </section>
+        
+        <section class="not-found flex flex-col items-center text-center gap-4 mt-[20%] hidden" >
+            <img  src="./images/message/not-found.png" alt="not-city" width="200" height="180">
+
+            <div class="mt-5">
+                <p class="text-[22px]">Serach City</p>
+                <p class="!font-normal">Find out the weather conditions of city</p>
+            </div>
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="./js/mian.js"></script>
 </body>
 </html>
